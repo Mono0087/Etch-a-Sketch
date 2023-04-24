@@ -1,0 +1,35 @@
+body {
+    background-color: antiquewhite;
+    color: white;
+}
+
+.container {
+    height: 100%;
+    max-width: 1430px;
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Main */
+
+.box {
+    background-color: rgb(185, 96, 96);
+    flex: 0 1 800px;
+    padding: 20px;
+    font-size: 1.3rem;
+    text-align: center;
+}
+
+h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+.sketch_field {
+    background-color: #fff;
+    border: 2px solid rgb(100, 71, 71);
+    height: 50vh;
+}
+
