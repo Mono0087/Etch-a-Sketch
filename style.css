@@ -14,6 +14,23 @@ body {
     align-items: center;
 }
 
+.btn {
+    background-color: beige;
+    padding: 5px;
+    margin-left: 5px;
+    font-size: 1.5rem;
+    border: 2px solid rgb(136, 64, 64);
+    transition: all 0.3s;
+}
+
+.btn:hover {
+    background-color: bisque;
+}
+
+.btn:active {
+    background-color: #fff;
+}
+
 /* Main */
 
 .box {
@@ -34,8 +51,34 @@ h1 {
     height: 70vmin;
     background-color: #fff;
     border: 2px solid rgb(100, 71, 71);
-    
+
     display: flex;
     flex-wrap: wrap;
     background-color: rgb(100, 71, 71);
 }
+
+.control_panel {
+    margin: 10px 0;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+#amount {
+    text-align: right;
+    font-size: 2rem;
+    max-width: 80px;
+    margin-top: 5px;
+    border: 2px solid rgb(100, 71, 71);
+}
+
+.set_panel {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.btn-set {
+}
+
+.btn-reset {}
