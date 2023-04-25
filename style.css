@@ -78,7 +78,17 @@ h1 {
     align-items: flex-end;
 }
 
-.btn-set {
+.brush_color {
+    margin-right: auto;
+    text-align: left;
 }
+
+
+.random_color, .default_color {
+    font-size: 1rem;
+    margin-top: 5px;
+}
+
+.btn-set {}
 
 .btn-reset {}

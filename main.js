@@ -1,7 +1,9 @@
 const sketchField = document.querySelector('.sketch_field');
 const setBtn = document.querySelector('.btn-set');
 const resetBtn = document.querySelector('.btn-reset');
-const amountInput = document.querySelector('#amount')
+const amountInput = document.querySelector('#amount');
+const randomColorBtn = document.querySelector('.random_color');
+const defaultColorBtn = document.querySelector('.default_color');
 let amount = +amountInput.value;
 
 
@@ -16,7 +18,10 @@ function getGrid(amount) {
         div.classList.add('field_div');
         sketchField.append(div);
     };
-    // Set pixels style and grid
+}
+
+// Set pixels style and grid
+function setPixelStyle() {
     let pixels = document.querySelectorAll('.field_div')
     Array.from(pixels).forEach((item) => {
         item.style.background = "white"
@@ -25,15 +30,9 @@ function getGrid(amount) {
         item.style.width = pixelWidth;
     });
 }
-getGrid(+amount);
 
-// Add hover effect
-sketchField.addEventListener('mousemove', changeColor);
-function changeColor(e) {
-    if (e.target.classList[0] == "field_div") {
-        e.target.style.backgroundColor = 'black'
-    }
-};
+getGrid(+amount);
+setPixelStyle();
 
 // Set pixels amount
 setBtn.addEventListener('click', () => {
@@ -43,6 +42,7 @@ setBtn.addEventListener('click', () => {
         newAmount = +amountInput.value;
         sketchField.innerHTML = '';
         getGrid(+newAmount);
+        setPixelStyle();
     } else {
         alert('Amount must be a numeric value less than 100 and greater than 4');
     }
@@ -52,5 +52,40 @@ setBtn.addEventListener('click', () => {
 resetBtn.addEventListener('click', () => {
     sketchField.innerHTML = '';
     getGrid(16);
+    setPixelStyle();
     amountInput.value = '16';
 });
+
+// Set default brush color
+const defaultBrush = "black";
+let currentBrush = defaultBrush;
+defaultColorBtn.addEventListener('click', () => {
+    currentBrush = defaultBrush;
+})
+
+// Get random color for brush
+function randomColor() {
+    let num = () => (Math.random() * 255).toFixed(0);
+    return `rgb(${num()}, ${num()}, ${num()})`;
+}
+
+// Set random color brush
+randomColorBtn.addEventListener('click', () => {
+    currentBrush = "random";
+})
+
+
+// Add hover effect
+sketchField.addEventListener('mousemove', changeColor);
+function changeColor(e) {
+    if (e.target.classList[0] == "field_div") {
+        switch (currentBrush) {
+            case "random":
+                e.target.style.backgroundColor = randomColor();
+                break;
+            case "black":
+                e.target.style.backgroundColor = defaultBrush;
+                break;
+        }
+    }
+};
