@@ -17,15 +17,21 @@
             <div class="control_panel">
                 <div class="brush_color">
                     <p>Set brush color</p>
-                    <button class="random_color btn">Random</button>
-                    <button class="default_color btn">Default</button>
+                    <div class="color_buttons">
+                        <button class="random_color btn">Random</button>
+                        <button class="default_color btn">Default</button>
+                    </div>
                 </div>
                 <div class="set_panel">
-                    <label for="amount">Set amount</label>
-                    <input id="amount" value="16" type="number" min="4" max="100">
+                    <div class="set_panel-input">
+                        <label for="size-amount">Set size: <span id="size-number">16x16</span></label>
+                        <input id="size" value="16" type="range" min="4" max="64">
+                    </div>
+                    <div class="set_panel-buttons">
+                        <button class="btn-set btn">Set</button>
+                        <button class="btn-reset btn">Reset</button>
+                    </div>
                 </div>
-                <button class="btn-set btn">Set</button>
-                <button class="btn-reset btn">Reset</button>
             </div>
             <div class="sketch_field"></div>
         </div>

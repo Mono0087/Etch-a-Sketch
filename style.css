@@ -17,10 +17,13 @@ body {
 .btn {
     background-color: beige;
     padding: 5px;
-    margin-left: 5px;
     font-size: 1.5rem;
     border: 2px solid rgb(136, 64, 64);
     transition: all 0.3s;
+}
+
+.btn+.btn {
+    margin-left: 5px;
 }
 
 .btn:hover {
@@ -51,7 +54,6 @@ h1 {
     height: 70vmin;
     background-color: #fff;
     border: 2px solid rgb(100, 71, 71);
-
     display: flex;
     flex-wrap: wrap;
     background-color: rgb(100, 71, 71);
@@ -64,7 +66,7 @@ h1 {
     align-items: flex-end;
 }
 
-#amount {
+#size-amount {
     text-align: right;
     font-size: 2rem;
     max-width: 80px;
@@ -74,14 +76,20 @@ h1 {
 
 .set_panel {
     display: flex;
-    flex-direction: column;
-    align-items: flex-end;
+
 }
 
 .brush_color {
     margin-right: auto;
     text-align: left;
+    display: flex;
+    flex-direction: column;
 }
+
+.color_buttons {
+    display: flex;
+}
+
 
 
 .random_color, .default_color {
@@ -89,6 +97,45 @@ h1 {
     margin-top: 5px;
 }
 
+.set_panel-input {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.set_panel-buttons {
+    display: flex;
+    margin-left: 5px;
+}
+
 .btn-set {}
 
 .btn-reset {}
+
+/* Small display */
+
+@media (max-width:650px) {
+    .control_panel {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .brush_color {
+        margin-right: 0;
+        margin-bottom: 5px;
+        text-align: center;
+    }
+
+    .set_panel {
+        display: block;
+    }
+
+    .set_panel-input {
+        align-items: center;
+    }
+
+    .sketch_field {
+        width: 90vmin;
+        height: 90vmin;
+    }
+}

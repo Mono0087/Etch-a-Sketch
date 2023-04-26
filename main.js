@@ -1,19 +1,20 @@
 const sketchField = document.querySelector('.sketch_field');
 const setBtn = document.querySelector('.btn-set');
 const resetBtn = document.querySelector('.btn-reset');
-const amountInput = document.querySelector('#amount');
+const sizeInput = document.querySelector('#size');
 const randomColorBtn = document.querySelector('.random_color');
 const defaultColorBtn = document.querySelector('.default_color');
-let amount = +amountInput.value;
+const sizeSpan = document.querySelector('#size-number');
+let size = +sizeInput.value;
 
 
 
 // Add div's to sketch field
-function getGrid(amount) {
+function getGrid(size) {
     // Get width and height for one "pixel" of the grid
-    pixelWidth = (sketchField.getBoundingClientRect().width - 4) / amount + 'px';
-    pixelHeight = (sketchField.getBoundingClientRect().width - 4) / amount + 'px';
-    for (let i = 0; i < amount * amount; i++) {
+    pixelWidth = (sketchField.getBoundingClientRect().width - 4) / size + 'px';
+    pixelHeight = (sketchField.getBoundingClientRect().width - 4) / size + 'px';
+    for (let i = 0; i < size * size; i++) {
         let div = document.createElement('div');
         div.classList.add('field_div');
         sketchField.append(div);
@@ -31,21 +32,16 @@ function setPixelStyle() {
     });
 }
 
-getGrid(+amount);
+getGrid(+size);
 setPixelStyle();
 
-// Set pixels amount
+// Set pixels size
 setBtn.addEventListener('click', () => {
-    let newAmount = amountInput.value;
-    console.log(newAmount)
-    if (newAmount && Number.isInteger(+newAmount) && +newAmount >= 4 && +newAmount <= 100) {
-        newAmount = +amountInput.value;
+    let newSize = +sizeInput.value;
         sketchField.innerHTML = '';
-        getGrid(+newAmount);
+        getGrid(+newSize);
         setPixelStyle();
-    } else {
-        alert('Amount must be a numeric value less than 100 and greater than 4');
-    }
+    sizeSpan.textContent = `${sizeInput.value}x${sizeInput.value}`;
 });
 
 // Reset grid
@@ -53,8 +49,13 @@ resetBtn.addEventListener('click', () => {
     sketchField.innerHTML = '';
     getGrid(16);
     setPixelStyle();
-    amountInput.value = '16';
+    sizeInput.value = '16';
+    sizeSpan.textContent = `${sizeInput.value}x${sizeInput.value}`;
 });
+
+sizeInput.addEventListener('input', (e) => {
+    sizeSpan.textContent = `${sizeInput.value}x${sizeInput.value}`;
+})
 
 // Set default brush color
 const defaultBrush = "black";
