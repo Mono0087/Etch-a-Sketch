@@ -2,8 +2,9 @@ const sketchField = document.querySelector('.sketch_field');
 const setBtn = document.querySelector('.btn-set');
 const resetBtn = document.querySelector('.btn-reset');
 const sizeInput = document.querySelector('#size');
-const randomColorBtn = document.querySelector('.random_color');
-const defaultColorBtn = document.querySelector('.default_color');
+const randomColorBtn = document.querySelector('#random_color');
+const defaultColorBtn = document.querySelector('#default_color');
+const shadingColorBtn = document.querySelector('#shading_color')
 const sizeSpan = document.querySelector('#size-number');
 let size = +sizeInput.value;
 
@@ -57,22 +58,21 @@ sizeInput.addEventListener('input', (e) => {
     sizeSpan.textContent = `${sizeInput.value}x${sizeInput.value}`;
 })
 
-// Set default brush color
+// Set default color brush
 const defaultBrush = "black";
 let currentBrush = defaultBrush;
 defaultColorBtn.addEventListener('click', () => {
     currentBrush = defaultBrush;
 })
 
-// Get random color for brush
-function randomColor() {
-    let num = () => (Math.random() * 255).toFixed(0);
-    return `rgb(${num()}, ${num()}, ${num()})`;
-}
-
 // Set random color brush
 randomColorBtn.addEventListener('click', () => {
     currentBrush = "random";
+})
+
+// Set shading brush
+shadingColorBtn.addEventListener('click', () => {
+    currentBrush = "shading";
 })
 
 
@@ -87,9 +87,18 @@ function changeColor(e) {
     if (e.target.classList[0] == "field_div") {
         switch (currentBrush) {
             case "random":
-                e.target.style.backgroundColor = randomColor();
+                let num = () => (Math.random() * 255).toFixed(0);
+                e.target.style.backgroundColor = `rgb(${num()}, ${num()}, ${num()})`;
                 break;
-            case "black":
+            case "shading":
+                let color = getComputedStyle(e.target).backgroundColor.slice(4,-1).replaceAll(',','').split(' ');
+                let newR = +color[0] - 25.5;
+                let newG = +color[1] - 25.5;
+                let newB = +color[2] - 25.5;
+                e.target.style.backgroundColor = `rgb(${newR}, ${newG}, ${newB})`;
+                console.log(color)
+                break;
+            default:
                 e.target.style.backgroundColor = defaultBrush;
                 break;
         }

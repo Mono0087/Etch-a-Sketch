@@ -92,7 +92,7 @@ h1 {
 
 
 
-.random_color, .default_color {
+.color_buttons button{
     font-size: 1rem;
     margin-top: 5px;
 }
