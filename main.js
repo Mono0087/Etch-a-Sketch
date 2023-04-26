@@ -6,6 +6,7 @@ const randomColorBtn = document.querySelector('#random_color');
 const defaultColorBtn = document.querySelector('#default_color');
 const shadingColorBtn = document.querySelector('#shading_color')
 const sizeSpan = document.querySelector('#size-number');
+const eraserBtn = document.querySelector('#erase_button');
 let size = +sizeInput.value;
 
 
@@ -54,7 +55,7 @@ resetBtn.addEventListener('click', () => {
     sizeSpan.textContent = `${sizeInput.value}x${sizeInput.value}`;
 });
 
-sizeInput.addEventListener('input', (e) => {
+sizeInput.addEventListener('input', () => {
     sizeSpan.textContent = `${sizeInput.value}x${sizeInput.value}`;
 })
 
@@ -75,6 +76,11 @@ shadingColorBtn.addEventListener('click', () => {
     currentBrush = "shading";
 })
 
+// Set Eraser
+eraserBtn.addEventListener('click', () => {
+    currentBrush = "eraser"
+})
+
 
 // Add hover effect
 sketchField.addEventListener('mousedown', changeColor);
@@ -91,12 +97,14 @@ function changeColor(e) {
                 e.target.style.backgroundColor = `rgb(${num()}, ${num()}, ${num()})`;
                 break;
             case "shading":
-                let color = getComputedStyle(e.target).backgroundColor.slice(4,-1).replaceAll(',','').split(' ');
+                let color = getComputedStyle(e.target).backgroundColor.slice(4, -1).replaceAll(',', '').split(' ');
                 let newR = +color[0] - 25.5;
                 let newG = +color[1] - 25.5;
                 let newB = +color[2] - 25.5;
                 e.target.style.backgroundColor = `rgb(${newR}, ${newG}, ${newB})`;
-                console.log(color)
+                break;
+            case "eraser":
+                e.target.style.backgroundColor = '#FFF'
                 break;
             default:
                 e.target.style.backgroundColor = defaultBrush;

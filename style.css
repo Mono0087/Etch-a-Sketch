@@ -92,7 +92,7 @@ h1 {
 
 
 
-.color_buttons button{
+.color_buttons button {
     font-size: 1rem;
     margin-top: 5px;
 }
@@ -106,6 +106,10 @@ h1 {
 .set_panel-buttons {
     display: flex;
     margin-left: 5px;
+}
+
+#erase_button {
+    background: #fff;
 }
 
 /* Small display */
