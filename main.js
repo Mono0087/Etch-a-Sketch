@@ -76,7 +76,7 @@ randomColorBtn.addEventListener('click', () => {
 
 
 // Add hover effect
-sketchField.addEventListener('mousemove', changeColor);
+sketchField.addEventListener('mouseover', changeColor);
 function changeColor(e) {
     if (e.target.classList[0] == "field_div") {
         switch (currentBrush) {
