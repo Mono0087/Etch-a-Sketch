@@ -38,9 +38,9 @@ setPixelStyle();
 // Set pixels size
 setBtn.addEventListener('click', () => {
     let newSize = +sizeInput.value;
-        sketchField.innerHTML = '';
-        getGrid(+newSize);
-        setPixelStyle();
+    sketchField.innerHTML = '';
+    getGrid(+newSize);
+    setPixelStyle();
     sizeSpan.textContent = `${sizeInput.value}x${sizeInput.value}`;
 });
 
@@ -77,7 +77,12 @@ randomColorBtn.addEventListener('click', () => {
 
 
 // Add hover effect
-sketchField.addEventListener('mouseover', changeColor);
+sketchField.addEventListener('mousedown', changeColor);
+sketchField.addEventListener('mousedown', (e) => {
+    sketchField.addEventListener('mouseover', changeColor);
+    // Prevent div's from dragging
+    e.preventDefault()
+});
 function changeColor(e) {
     if (e.target.classList[0] == "field_div") {
         switch (currentBrush) {
@@ -89,4 +94,9 @@ function changeColor(e) {
                 break;
         }
     }
+
 };
+window.addEventListener('mouseup', () => {
+    sketchField.removeEventListener('mouseover', changeColor);
+});
+
